@@ -2,3 +2,4 @@
 .pytest_*/
 .tox/
 venv/
+__pycache__/

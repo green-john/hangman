@@ -9,6 +9,12 @@ This hangman project is a pretty fun one because the front and backend are compl
 independent. This means you can use your own frontend with the backend in order to have
 your own personal hangman.
 
+## Description
+TODO
+
+## Architecture
+TODO
+
 ## API
 
 Note: All api endpoints are preceded by the `'api/v1'` prefix. Which for brevity would be
@@ -33,11 +39,11 @@ None
         wrong_guesses: set<char>
     }
 
+`GuessInProgress` is an object we use throughout our API to represent the status of a current guess.
 `word_hash` contains a cryptographic hash of the word being guessed. This enables our hangman
 backend to be stateless. `word_length` is the length of the word. `correct_guesses` maps every
 letter that has correctly been guessed to the indices that such letter belongs to. `wrong_guesses`
-is a set with the letters that do not appear anywhere in the word. `GuessInProgress` is an object
-that is used throughout our API so it's good to get a bit familiar with it.
+is a set with the letters that do not appear anywhere in the word. 
 
 #### `'/check_guess'`
 Updates the `GuestInProgress` object and returns whether the game has finished or not.
@@ -74,7 +80,7 @@ The max score is 100. The more a person tries, the lower score they will get.
 ##### Output
 
     CalculateScoreOutput {
-        score: float
+        score: int
     }
 
 ## Tech Stack
@@ -89,4 +95,4 @@ run the tests, do
     
 To run locally, do
 
-    FLASK_APP=manage.py HANGMAN_JSON=<scores.json> HANGMAN_ENV=dev flask
+    FLASK_APP=manage.py HANGMAN_HIGHSCORE_FILE=scores.json HANGMAN_ENV=dev flask run
