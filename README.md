@@ -1,31 +1,32 @@
 # Hangman
-
-This is my implementation of the classic hangman game. You can play [here]() with the simple
-UI I made, or you can connect to the backend [here]() and write your own beautiful frontend.
+This is my implementation of the classic hangman game. The front and backend are independent
+which means you can use my frontend or create a new one to play the game.
 
 ## Overview
-
-This hangman project is a pretty fun one because the front and backend are completely
-independent. This means you can use your own frontend with the backend in order to have
-your own personal hangman.
-
-## Description
-TODO
+This is a python implementation of the classical hangman game. It works by encrypting the
+word being guessed and sending the encrypted string back and forth to the server to check
+the different guesses and the final score of a user. This document explains the architecture
+as well as the API that can be used to play the game.
 
 ## Architecture
-TODO
+The core logic of the application can be found in the `hangman` module. There you will find
+different files, each concerning the generation, checking, scoring or encryption of words.
+Each file is named according to the components it contains.
+
+On top of this core layer, we have a web layer made with flask that we use to make our
+business logic available to the world. The decision to keep api and logic separate was an
+easy one because it allows for easier testability and extensibility.
 
 ## API
-
 Note: All api endpoints are preceded by the `'api/v1'` prefix. Which for brevity would be
 omitted. For example, when we refer to the `'/generate_word'` endpoint, we are actually
 referring to the endpoint `'/api/v1/generate_word'`.
 
-We have designed the system with a simple API with 3 endpoints:
+The system has 3 endpoints
 
 #### `GET '/generate_word'`
-This API is the beginning of the application. The user submits a request
-to generate the word.
+This API is the beginning of the application. The user submits a request to generate
+a word.
 
 ##### Input
 None
@@ -85,9 +86,15 @@ The max score is 100. The more a person tries, the lower score they will get.
 
 ## Tech Stack
 The backend uses python and flask. It uses a simple json file to store the
-scores of the users. The frontend uses vanilla javascript.
+scores of the users. The frontend uses vanilla javascript and pug.
 
 ## Running and Tests
+Make sure you use Python3.5+ to run the app.
+
+First install all the requirements, better still if its on a virtual env
+
+    pip install -r requirements.txt
+
 To run the backend locally, do
 
     FLASK_APP=hangman_backend.py HANGMAN_HIGHSCORE_FILE=scores.json HANGMAN_ENV=dev flask run
@@ -97,3 +104,10 @@ run the tests, do
     
     tox -e dev
     
+## Gotchas & TODOs
+- The dependencies on the backend should be injected in a better way. Right now we use
+the flask config to place the dependencies there.
+- The encryption algorithms take a long time to encrypt/decrypt. We should mock them
+in the test in order to save time when the tests are being run.
+- Alternatively, use a crypto library that allows for configuration of parameters in
+order to ease them out when testing.

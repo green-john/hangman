@@ -1,0 +1,91 @@
+$bg-color: #FFE0AA;
+$button-color: #553600;
+$fg-color: #32414d;
+$wrong-letter-color: #32414d;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $bg-color;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 16px;
+  text-align: center;
+
+  button.cta-start-game {
+    background-color: $wrong-letter-color;
+    border: none;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    color: $bg-color;
+    font-size: 1.1rem;
+    margin: 4rem auto;
+    outline: none;
+    padding: 1rem;
+    width: 18rem;
+  }
+
+  section#game {
+    display: none;
+    //display: grid;
+
+    div#lives {
+      margin: 1rem;
+      text-align: left;
+
+      span.fa-heart {
+        font-size: 1.3rem;
+      }
+    }
+
+    div#blanks {
+      margin: 5rem 0;
+
+      span.blank {
+        color: $fg-color;
+        font-size: 1.3rem;
+        border-bottom: 1px solid $fg-color;
+        padding: .4rem;
+        margin: 0 .4rem;
+      }
+    }
+
+    div.letters {
+      margin: 0 1rem 1rem;
+      text-align: left;
+
+      h4 {
+        color: $wrong-letter-color;
+        font-size: 1.3rem;
+        margin-left: .3rem;
+      }
+
+      .container-letters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+
+        .letter {
+          color: $wrong-letter-color;
+          font-size: 1.2rem;
+        }
+
+        button.letter {
+          background-color: $wrong-letter-color;
+          border: none;
+          color: $bg-color;
+          margin: .3rem;
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+.alive {
+  color: red;
+}
+
+.dead {
+  color: #d1d3ca;
+}

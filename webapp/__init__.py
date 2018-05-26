@@ -31,19 +31,22 @@ def create_app(config_name: str, guess_gen: GuessGenerator,
     app.config.from_object(config[config_name])
     app.url_map.strict_slashes = False
 
+    from webapp.frontend import bp as frontend_bp
+    app.register_blueprint(frontend_bp)
+
     from webapp.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix=API_PREFIX)
+
+    # Uses the config to store the dependencies for now.
+    # this is very very very ugly and should be handled by a
+    # dependency injection library.
+    # TODO: do DI with a library
 
     dependencies = {
         'generator': guess_gen,
         'checker': guess_check,
         'scorer': guess_score
     }
-
-    # Uses the config to store the dependencies for now.
-    # this is very very very ugly and should be handled by a
-    # dependency injection library.
-    # TODO: do DI with a library
 
     app.config[DEPENDENCIES] = dependencies
 

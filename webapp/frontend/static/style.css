@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #FFE0AA;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 16px;
+  text-align: center; }
+  body button.cta-start-game {
+    background-color: #32414d;
+    border: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: #FFE0AA;
+    font-size: 1.1rem;
+    margin: 4rem auto;
+    outline: none;
+    padding: 1rem;
+    width: 18rem; }
+  body section#game {
+    display: none; }
+    body section#game div#lives {
+      margin: 1rem;
+      text-align: left; }
+      body section#game div#lives span.fa-heart {
+        font-size: 1.3rem; }
+    body section#game div#blanks {
+      margin: 5rem 0; }
+      body section#game div#blanks span.blank {
+        color: #32414d;
+        font-size: 1.3rem;
+        border-bottom: 1px solid #32414d;
+        padding: .4rem;
+        margin: 0 .4rem; }
+    body section#game div.letters {
+      margin: 0 1rem 1rem;
+      text-align: left; }
+      body section#game div.letters h4 {
+        color: #32414d;
+        font-size: 1.3rem;
+        margin-left: .3rem; }
+      body section#game div.letters .container-letters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); }
+        body section#game div.letters .container-letters .letter {
+          color: #32414d;
+          font-size: 1.2rem; }
+        body section#game div.letters .container-letters button.letter {
+          background-color: #32414d;
+          border: none;
+          color: #FFE0AA;
+          margin: .3rem;
+          outline: none; }
+
+.alive {
+  color: red; }
+
+.dead {
+  color: #d1d3ca; }
+
+/*# sourceMappingURL=style.css.map */
