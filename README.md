@@ -23,7 +23,7 @@ referring to the endpoint `'/api/v1/generate_word'`.
 
 We have designed the system with a simple API with 3 endpoints:
 
-#### `'/generate_word'`
+#### `GET '/generate_word'`
 This API is the beginning of the application. The user submits a request
 to generate the word.
 
@@ -45,24 +45,24 @@ backend to be stateless. `word_length` is the length of the word. `correct_guess
 letter that has correctly been guessed to the indices that such letter belongs to. `wrong_guesses`
 is a set with the letters that do not appear anywhere in the word. 
 
-#### `'/check_guess'`
+#### `POST '/check_guess'`
 Updates the `GuestInProgress` object and returns whether the game has finished or not.
 
 ##### Input
     
     CheckGuessInput {
-        guess_in_progress: GuessInProgress
-        current_guess: char
+        guess: GuessInProgress
+        current_char: char
     }
     
 ##### Output
 
     CheckGuessOutput {
         finished: bool
-        guess_in_progress: GuessInProgress
+        next_guess: GuessInProgress
     }
 
-#### `'/calculate_save_score'`
+#### `POST '/calculate_save_score'`
 Calculates and stores the score of the user. If the guess is not finished,
 it returns a negative score. The scoring algorithm works as follows:
 
@@ -73,7 +73,7 @@ The max score is 100. The more a person tries, the lower score they will get.
 ##### Input
     
     CalculateScoreInput {
-        guess_in_progress: GuessInProgress
+        final_guess: GuessInProgress
         username: string
     }
     
@@ -87,12 +87,13 @@ The max score is 100. The more a person tries, the lower score they will get.
 The backend uses python and flask. It uses a simple json file to store the
 scores of the users. The frontend uses vanilla javascript.
 
-## Test & Deploy
+## Running and Tests
+To run the backend locally, do
+
+    FLASK_APP=hangman_backend.py HANGMAN_HIGHSCORE_FILE=scores.json HANGMAN_ENV=dev flask run
+    
 We use the `tox` tool along with `pytest` to run our test suites. In order to
 run the tests, do
     
     tox -e dev
     
-To run locally, do
-
-    FLASK_APP=manage.py HANGMAN_HIGHSCORE_FILE=scores.json HANGMAN_ENV=dev flask run

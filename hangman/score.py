@@ -1,7 +1,7 @@
 import os
 import json
 
-from hangman.guesses import GuessInProgress
+from hangman.models import GuessInProgress
 from hangman.config import MAX_ATTEMPTS, HIGHSCORE_FILE
 
 
@@ -11,7 +11,7 @@ class GuessScorer:
     """
 
     @staticmethod
-    def calculate_and_save_score(last_guess: GuessInProgress, username: str):
+    def calculate_and_save_score(last_guess: GuessInProgress, username: str) -> int:
         """
         Scores the last guess that the user made. If it is not the last guess
         returns a negative score. See readme for how to calculate the score.
