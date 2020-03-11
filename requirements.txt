@@ -15,4 +15,4 @@ simple-crypt==4.1.7
 six==1.11.0
 tox==3.0.0
 virtualenv==16.0.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
