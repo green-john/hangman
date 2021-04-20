@@ -9,7 +9,7 @@ MarkupSafe==1.0
 more-itertools==4.1.0
 nose2==0.7.4
 pluggy==0.6.0
-py==1.5.3
+py==1.10.0
 pycrypto==2.6.1
 simple-crypt==4.1.7
 six==1.11.0
